@@ -1,0 +1,36 @@
+<div class="user-form">
+    <form action="/user/login" method="post">
+        <div>
+            <h3 style="margin: .5rem;">
+                Log In,
+                <small class="text-body-secondary">to existing account</small>
+            </h3>
+            <ul>
+                <% if (messages.success_msg) { %>
+                    <li style="color: green;">
+                        <%= messages.success_msg %>
+                    </li>
+                    <% } %>
+                        <% if (messages.error) { %>
+                            <li style="color: red;">
+                                <%= messages.error %>
+                            </li>
+                            <% } %>
+
+            </ul>
+            <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                <span class="input-group-text" id="addon-wrapping">👤</span>
+                <input type="text" name="username" class="form-control" placeholder="Username*"
+                    aria-label="enter username" aria-describedby="addon-wrapping" required>
+            </div>
+            <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                <span class="input-group-text" id="addon-wrapping">🔑</span>
+                <input type="Password" name="pswd" class="form-control" placeholder="New Password*"
+                    aria-label="enter password" aria-describedby="addon-wrapping" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin: .5rem;">Log In</button> <br />
+            <span style="margin: .5rem;">don't have an account? <a href="/user/register">Create
+                    one</a></span>
+        </div>
+    </form>
+</div>

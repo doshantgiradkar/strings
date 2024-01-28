@@ -1,0 +1,20 @@
+<% homePage.forEach(card=> { %>
+    <div class="card" style="margin: .25rem; max-width: 46%; display: inline-flex;" id="<% card.content_id %>">
+        <img src="images/<%= card.img %>" class="card-img-top" alt="Loading...">
+        <div class="card-body">
+            <h5 class="card-title">
+                "<%= card.title %>"
+            </h5>
+            <p class="text-body-secondary">
+                ~ <%= card.username %>
+            </p>
+            <form action="contentid/actions" method="post"></form>
+            <p class="d-inline-flex gap-1">
+                <a href="#" class="btn disabled" role="button" data-bs-toggle="button" aria-disabled="true">👍 <%=
+                        card.total_likes%> </a>
+                <a href="#" class="btn disabled" role="button" data-bs-toggle="button" aria-disabled="true">👎 <%=
+                        card.total_dislikes %></a>
+            </p>
+        </div>
+    </div>
+    <% }); %>

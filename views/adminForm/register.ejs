@@ -1,0 +1,48 @@
+<div class="user-form">
+    <form action="/admin/register" method="post">
+        <div>
+            <h3 style="margin: .5rem;">
+                Register,
+                <small class="text-body-secondary">a new admin account</small>
+            </h3>
+            <% if (typeof errors!='undefined' ) { %>
+                <ul>
+                    <% errors.forEach((error)=> { %>
+                        <li style="color: red;">
+                            <%= error.message %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+                    <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                        <span class="input-group-text" id="addon-wrapping">👤</span>
+                        <input type="text" name="username" class="form-control" placeholder="Username*"
+                            aria-label="enter username" aria-describedby="addon-wrapping" required>
+                    </div>
+                    <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                        <span class="input-group-text" id="addon-wrapping">🔑</span>
+                        <input type="Password" name="pswd" class="form-control" placeholder="New Password*"
+                            aria-label="enter password" aria-describedby="addon-wrapping" required>
+                    </div>
+                    <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                        <span class="input-group-text" id="addon-wrapping">🔑</span>
+                        <input type="Password" name="confirm_pswd" class="form-control" placeholder="Confirm Password*"
+                            aria-label="confirm pasword" aria-describedby="addon-wrapping" required>
+                    </div>
+                    <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                        <span class="input-group-text" id="addon-wrapping">🔑</span>
+                        <input type="Password" name="admin_pswd" class="form-control" placeholder="Admin Password*"
+                            aria-label="confirm pasword" aria-describedby="addon-wrapping" required>
+                    </div>
+                    <div class="input-group flex-nowrap" style="margin: 1rem .5rem; width: 40%;">
+                        <span class="input-group-text" id="addon-wrapping">📧</span>
+                        <input type="email" name="email" class="form-control" placeholder="Email ID*"
+                            aria-label="enter email id" aria-describedby="addon-wrapping" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin: .5rem;">Register</button>
+                    <br />
+                    <span style="margin: .5rem;">Log in to existing account? <a href="/user/login">Click
+                            here</a></span>
+        </div>
+    </form>
+</div>

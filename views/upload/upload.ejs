@@ -1,0 +1,18 @@
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <h3 style="margin: .5rem;">
+        Upload,
+        <small class="text-body-secondary">Your Art</small>
+    </h3>
+    <div class="input-group mb-3">
+
+        <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+        <input type="text" name="title" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" required>
+    </div>
+    <div class="mb-3">
+        <input class="form-control" type="file" name="file" id="file" required>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </div>
+</form>
