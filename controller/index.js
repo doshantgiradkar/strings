@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const multr = require("multer");
 const path = require("path")
-const db = require("../db");
+const db = require("../model/db");
 const flash = require("express-flash");
 
 const storeImg = multr.diskStorage({
@@ -88,7 +88,30 @@ router.get("/upload", (req, res) => {
 })
 
 router.get("/my-gallery", (req, res) => {
-    res.render("my_gallery");
+    if (typeof req.user != 'undefined')
+        db.query(
+            `SELECT content.content_id, content.title, content.img, content.user_id, users.username,
+            COALESCE(SUM(CASE WHEN actions._like THEN 1 ELSE 0 END), 0) AS total_likes,
+            COALESCE(SUM(CASE WHEN actions._dislike THEN 1 ELSE 0 END), 0) AS total_dislikes
+            FROM content
+            JOIN users ON content.user_id = users.user_id
+            LEFT JOIN actions ON content.content_id = actions.content_id
+            WHERE users.username = '${req.user.username}'
+            GROUP BY content.content_id, content.title, content.img, content.user_id,  users.username
+            ORDER BY total_likes DESC, total_dislikes ASC;`, (err, results) => {
+            if (err)
+                throw err;
+            else {
+                let galleryPage = results.rows;
+                res.render("gallery", {
+                    user: req.user.username,
+                    activeDir: req.path,
+                    galleryPage
+                });
+            }
+        })
+    else
+        res.redirect("/user/login");
 })
 
 router.post("/upload", upload.single('file'), (req, res) => {

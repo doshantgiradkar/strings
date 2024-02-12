@@ -1,7 +1,7 @@
 const { SHA256 } = require("crypto-js");
 const express = require("express");
 const router = express.Router();
-const db = require("../db");
+const db = require("../model/db");
 require("dotenv").config()
 
 

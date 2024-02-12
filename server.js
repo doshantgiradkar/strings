@@ -36,6 +36,6 @@ app.use('/', indexRouter);
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server Started At Port " + process.env.PORT || 3000);
+app.listen(process.env.PORT || 8080, () => {
+    console.log("Server Started At Port " + process.env.PORT || 8080);
 })
