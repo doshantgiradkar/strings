@@ -6,7 +6,9 @@ require("dotenv").config()
 
 
 router.get("/register", (req, res) => {
-    res.render("adminForm/register");
+    res.render("adminForm/register", {
+        activeDir: req.path,
+    });
 });
 router.post("/register", (req, res) => {
     let errors = [];

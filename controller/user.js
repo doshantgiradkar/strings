@@ -6,7 +6,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 router.get('/login', (req, res) => {
-    res.render("userForm/login");
+    res.render("userForm/login", {
+        activeDir: req.path,
+    });
 });
 
 router.post("/login", passport.authenticate('local', {
@@ -25,7 +27,9 @@ router.post("/logout", (req, res, next) => {
 })
 
 router.get("/register", (req, res) => {
-    res.render("userForm/register");
+    res.render("userForm/register", {
+        activeDir: req.path,
+    });
 });
 
 router.post("/register", (req, res) => {

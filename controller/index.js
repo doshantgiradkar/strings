@@ -124,7 +124,9 @@ router.post("/upload", upload.single('file'), (req, res) => {
                 throw err;
             else {
                 req.flash('success_msg', "Image Uploaded!!");
-                res.redirect("/");
+                res.redirect("/", {
+                    activeDir: req.path,
+                });
             }
         })
     } else {

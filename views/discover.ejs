@@ -1,11 +1,13 @@
 <% discoverPage.forEach(card=> { %>
-    <div class="card" style="margin: .25rem; max-width: 46%; display: inline-flex;" id="<% card.content_id %>">
-        <img src="images/<%= card.img %>" class="card-img-top" alt="Loading...">
-        <div class="card-body">
-            <h5 class="card-title">
+    <div class="card" style="margin: .5rem; max-width: 100%; display: flex; max-height: 80vh; flex-direction: column;"
+        id="<% card.content_id %>">
+        <img src="images/<%= card.img %>" class="card-img-top" alt="Loading..."
+            style="max-height: 60vh; min-width: 40%;">
+        <div class="card-body" style="display: flex; flex: 1; flex-direction: column;">
+            <h5 class="card-title" style="flex: 1;">
                 "<%= card.title %>"
             </h5>
-            <p class="text-body-secondary">
+            <p class="text-body-secondary" style="flex: 1; overflow: hidden;">
                 ~ <%= card.username %>
             </p>
             <form action="contentid/actions" method="post"></form>
