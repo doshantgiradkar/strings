@@ -1,3 +1,10 @@
 .env
 node_modules
 database.sql
+*.jpg
+*jpeg
+*.png
+*.webp
+*.avi
+*.ico
+*.css
