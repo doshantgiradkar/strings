@@ -1,6 +1,6 @@
 .env
+id_rsa
 node_modules
-database.sql
 *.jpg
 *jpeg
 *.png
