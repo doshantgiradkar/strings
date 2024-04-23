@@ -5,18 +5,71 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>STRINGS - Digital Art SNS</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/index.css">
+  <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+  <script>
+    function like(content_id) {
+      post = document.querySelector("#".concat(content_id))
+      rating = post.querySelector(".post-rating-button-like")
+      dislike_rating = post.querySelector(".post-rating-button-dislike")
+      const count = post.querySelector(".post-rating-count")
+
+      if (rating.classList.contains("post-rating-selected")) {
+        rating.classList.remove('btn-primary')
+        rating.classList.add('btn-secondary')
+        rating.classList.remove("post-rating-selected")
+        // dislike_rating.classList.add('btn-primary')
+        // dislike_rating.classList.remove('btn-secondary')
+
+      } else {
+        rating.classList.add('btn-primary')
+        rating.classList.remove('btn-secondary')
+        rating.classList.add("post-rating-selected")
+        dislike_rating.classList.add('btn-secondary')
+        dislike_rating.classList.remove('btn-primary')
+
+      }
+      const response = fetch(`/actn/like/${content_id.replace(/^item/, '')}`, { method: "post" })
+    }
+
+    function dislike(content_id) {
+      post = document.querySelector("#".concat(content_id))
+      rating = post.querySelector(".post-rating-button-dislike")
+      like_rating = post.querySelector(".post-rating-button-like")
+      const count = post.querySelector(".post-rating-count")
+
+      if (rating.classList.contains("post-rating-selected")) {
+        rating.classList.remove('btn-primary')
+        rating.classList.add('btn-secondary')
+        rating.classList.remove("post-rating-selected")
+        // like_rating.classList.add('btn-primary')
+        // like_rating.classList.remove('btn-secondary')
+
+      } else {
+        rating.classList.add('btn-primary')
+        rating.classList.remove('btn-secondary')
+        rating.classList.add("post-rating-selected")
+        like_rating.classList.add('btn-secondary')
+        like_rating.classList.remove('btn-primary')
+
+      }
+    }
+
+    function deleteContent(content_id) {
+      const post = document.querySelector("#" + String(content_id));
+      fetch(`/actn/delete/${content_id.replace(/^item/, '')}`, { method: "post" });
+    }
+
+  </script>
 </head>
 
 <body>
-  <div class="container-fluid" style="margin-top: 5rem; display: flex; flex-wrap: wrap">
+  <div class="container-fluid" style="margin-top: 6rem;">
     <%- body %>
   </div>
   <%- include('../partials/navbar.ejs') %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

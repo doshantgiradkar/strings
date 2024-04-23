@@ -1,22 +1,46 @@
-<% homePage.forEach(card=> { %>
-    <div class="card" style="margin: .5rem; max-width: 100%; display: flex; max-height: 80vh; flex-direction: column;"
-        id="<% card.content_id %>">
-        <img src="images/<%= card.img %>" class="card-img-top" alt="Loading..."
-            style="max-height: 60vh; min-width: 40%;">
-        <div class="card-body" style="display: flex; flex: 1; flex-direction: column;">
-            <h5 class="card-title" style="flex: 1;">
-                "<%= card.title %>"
-            </h5>
-            <p class="text-body-secondary" style="flex: 1; overflow: hidden;">
-                ~ <%= card.username %>
-            </p>
-            <form action="contentid/actions" method="post"></form>
-            <p class="d-inline-flex gap-1">
-                <a href="#" class="btn disabled" role="button" data-bs-toggle="button" aria-disabled="true">👍 <%=
-                        card.total_likes%> </a>
-                <a href="#" class="btn disabled" role="button" data-bs-toggle="button" aria-disabled="true">👎 <%=
-                        card.total_dislikes %></a>
-            </p>
+<div class="about-site">
+  <center>
+    <h2>Welcome To Strings, </h2>
+    <h3>A Gallery For Digital Art</h3> <a data-bs-toggle="collapse" href="#about" role="button"
+      aria-expanded="false" aria-controls="collapseExample">...</a>
+    <div class="collapse" id="about">
+      <div class="card card-body">
+        <p>
+          In an era where every artist’s dream is to stand out, Strings emerges as the bridge between creators and
+          their global audience. Whether you wield a stylus or a mouse, this digital gallery invites you to showcase
+          your masterpieces, share your process, and find kindred spirits who resonate with your vision.
+        </p>
+        <p>
+          Curate your digital gallery. Showcase your best work, from that mesmerizing digital landscape to the
+          quirky pixel portrait. Each piece is a thread in your artistic journey on Strings.
+        </p>
+      </div>
+    </div>
+  </center>
+</div>
+<div style="display: flex; flex-wrap: wrap">
+  <% homePageData.forEach(card=> { %>
+    <div class="post card" id="item<%= card.content_id %>">
+      <img src="images/<%= card.img %>" class="card-img-top post-image" alt="Loading..." />
+      <div class="card-body">
+        <h5 class="card-title" style="flex: 1">🙶 <%= card.title %> </h5>
+        <p class="text-body-secondary">
+          ~ <%= card.username %>
+        </p>
+        <div class="d-inline-flex gap-1">
+          <div class="post-ratings-container">
+            <div class="post-rating" style="display: inline;">
+              <button type="button" class="btn btn-secondary post-rating-button-like post-rating-button" onclick="like(`item<%= card.content_id %>`)">🖒</button>
+              <span class="post-rating-count">
+                <%= card.total_likes %> : <%= card.total_dislikes %>
+              </span>
+            </div>
+            <div class="post-rating" style="display: inline;">
+              <button type="button" class="btn btn-secondary post-rating-button-dislike post-rating-button" onclick="dislike(`item<%= card.content_id %>`)">🖓</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <% }); %>
+</div>

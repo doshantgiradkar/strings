@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - /media/doshant/DEV/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=101003
+      - POSTGRES_USER=doshant
+      - POSTGRES_DB=strings
+
+volumes:
+  data:
