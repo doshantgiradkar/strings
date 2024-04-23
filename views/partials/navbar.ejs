@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: fixed; top: 0px; width: 100%;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Strings</a>
+    <a class="navbar-brand">Strings</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,12 +19,19 @@
           </li>
           <% } %>
       </ul>
-
-      <a class="btn btn-outline-success" href="/upload" style="margin: .25rem;">Upload</a>
-      <% if (typeof user=='undefined' ) { %><%- include('./_login_btn.ejs') %>
-          <% } %>
-            <% if (typeof user !='undefined' ) { %><%- include('./_logout_btn.ejs') %>
-                <% } %>
+      <form class="d-flex" action="/view" style="margin-right: 1rem;" method="post">
+        <input type="text" name="username" class="form-control" placeholder="username"
+                    aria-label="enter username" aria-describedby="addon-wrapping" style="margin-right: .25rem;" required>
+        <button class="btn btn-outline-success" type="submit" aria-label="View User"> View </button>
+      </form>
+      <h1 style="margin-top: .5rem; color: rgb(66, 66, 66); font-weight: 500; user-select: none;">｜</h1>
+      <a class="btn btn-outline-success" href="/upload" style="margin: .25rem; margin-left: 1rem;">Upload</a>
+      <% if (typeof user=='undefined' ) { %>
+        <%- include('./_login_btn.ejs') %>
+      <% } %> 
+      <% if (typeof user !='undefined' ) { %>
+        <%- include('./_logout_btn.ejs') %>
+      <% } %>
 
     </div>
   </div>

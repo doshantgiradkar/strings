@@ -1,0 +1,51 @@
+<h2 class="view-page-heading">
+  <%= user %>'s Gallery %>
+</h2>
+
+<ul>
+  <% if (messages.err_msg) { %>
+    <li style="color: red;">
+      <%= messages.err_msg %>
+    </li>
+    go to home page? <a href="/" style="text-decoration: none;">[Y]</a>
+    <% } %>
+</ul>
+
+<div style="display: flex; flex-wrap: wrap">
+  <% if (typeof userPage !='undefined' ) {%>
+    <% userPage.forEach(card=> { %>
+      <div class="post card" id="item<%= card.content_id %>">
+        <img src="/images/<%= card.img %>" class="card-img-top post-image" alt="Loading..." />
+        <div class="card-body">
+          <h5 class="card-title" style="flex: 1">🙶 <%= card.title %> </h5>
+          <p class="text-body-secondary">
+            ~ <%= card.username %>
+          </p>
+          <div class="d-inline-flex gap-1">
+            <div class="post-ratings-container">
+              <div class="post-rating" style="display: inline;">
+                <button type="button" class="btn btn-secondary post-ratting-button-like post-rating-button" onclick="like(`item<%= card.content_id %>`)">🖒</button>
+                <span class="post-rating-count">
+
+                <%= card.total_likes %> : <%= card.total_dislikes %>
+
+                </span>
+              </div>
+              <div class="post-rating" style="display: inline;">
+                <button type="button" class="btn btn-secondary post-ratting-button-dislike post-rating-button" onclick="dislike(`item<%= card.content_id %>`)">🖓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+        <% } %>
+</div>
+
+<script>
+  function cpy_to_clipboard() {
+    link = window.location.host + `/view/<%= user %>`
+    navigator.clipboard.writeText(link)
+  }
+</script>
+<button class="btn btn-success link-floating-button" onclick="cpy_to_clipboard()">📋</button>

@@ -1,22 +1,56 @@
-<% galleryPage.forEach(card=> { %>
-    <div class="card" style="margin: .5rem; max-width: 100%; display: flex; max-height: 80vh; flex-direction: column;"
-        id="<% card.content_id %>">
-        <img src="images/<%= card.img %>" class="card-img-top" alt="Loading..."
-            style="max-height: 60vh; min-width: 40%;">
-        <div class="card-body" style="display: flex; flex: 1; flex-direction: column;">
-            <h5 class="card-title" style="flex: 1;">
-                "<%= card.title %>"
-            </h5>
-            <p class="text-body-secondary" style="overflow: hidden; flex: 1;">
-                ~ <%= card.username %>
-            </p>
-            <form action="contentid/actions" method="post"></form>
-            <p class="d-inline-flex gap-1">
-                <a href="#" class="btn disabled" role="button" data-bs-toggle="button" aria-disabled="true">👍 <%=
-                        card.total_likes%> </a>
-                <a href="#" class="btn disabled" role="button" data-bs-toggle="button" aria-disabled="true">👎 <%=
-                        card.total_dislikes %></a>
-            </p>
+<ul>
+  <% if (messages.success_msg) { %>
+    <li style="color: green;">
+      <%= messages.success_msg %>
+    </li>
+    <% } %>
+      <% if (messages.err_msg) { %>
+        <li style="color: red;">
+          <%= messages.err_msg %>
+        </li>
+        <% } %>
+</ul>
+
+
+<div style="display: flex; flex-wrap: wrap">
+  <% galleryPage.forEach(card=> { %>
+    <div class="post card" id="item<%= card.content_id %>">
+      <img src="images/<%= card.img %>" class="card-img-top post-image" alt="Loading..." />
+      <div class="card-body">
+        <h5 class="card-title" style="flex: 1">🙶 <%= card.title %>
+        </h5>
+        <p class="text-body-secondary">
+          🢒 <%= card.username %> 🢐
+        </p>
+        <div class="d-inline-flex gap-1">
+          <div class="post-ratings-container">
+            <div class="post-rating" style="display: inline;">
+              <button type="button" class="btn btn-secondary post-ratting-button-like post-rating-button"
+                onclick="like(`item<%= card.content_id %>`)">🖒</button>
+              <span class="post-rating-count">
+                
+                <%= card.total_likes %> : <%= card.total_dislikes %>
+
+              </span>
+            </div>
+            <div class="post-rating" style="display: inline;">
+              <button type="button" class="btn btn-secondary post-ratting-button-dislike post-rating-button"
+                onclick="dislike(`item<%= card.content_id %>`)">🖓</button>
+            </div>
+            <div style="display: inline;">
+              <button type="button" class="btn btn-secondary delete-btn" onclick="deleteContent(`item<%= card.content_id %>`)">🚮</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <% }); %>
+</div>
+
+<script>
+  function cpy_to_clipboard() {
+    link = window.location.host + `/view/<%= user %>`
+    navigator.clipboard.writeText(link)
+  }
+</script>
+<button class="btn btn-success link-floating-button" onclick="cpy_to_clipboard()">📋</button>
